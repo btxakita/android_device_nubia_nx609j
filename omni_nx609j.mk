@@ -20,10 +20,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := omni_nx563j
-PRODUCT_DEVICE := nx563j
+PRODUCT_NAME := omni_nx609j
+PRODUCT_DEVICE := nx609j
 PRODUCT_BRAND := nubia
-PRODUCT_MODEL := NX563J
+PRODUCT_MODEL := NX609J
 PRODUCT_MANUFACTURER := nubia
 
 PRODUCT_AAPT_CONFIG := normal
@@ -32,5 +32,5 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX563J PRODUCT_NAME=NX563J
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX609J PRODUCT_NAME=NX609J
 

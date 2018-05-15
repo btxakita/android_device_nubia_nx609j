@@ -1,2 +1,2 @@
-add_lunch_combo omni_nx563j-eng
-add_lunch_combo omni_nx563j-userdebug
+add_lunch_combo omni_nx609j-eng
+add_lunch_combo omni_nx609j-userdebug

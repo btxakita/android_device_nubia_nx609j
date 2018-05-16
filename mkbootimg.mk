@@ -27,8 +27,8 @@ LOCAL_PATH := $(call my-dir)
 ## Overload bootimg generation: Same as the original, using prebuilt kernel with BootSignature
 $(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOT_SIGNER)
 	$(call pretty,"Target boot image: $@")
-	$(hide) $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --output $@
-	$(BOOT_SIGNER) /boot $@ device/nubia/nx563j/bootsignature/verity.pk8 device/nubia/nx563j/bootsignature/verity.x509.pem $@
+	$(hide) $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --base $(BOARD_KERNEL_BASE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET) --second_offset $(BOARD_SECOND_OFFSET) --output $@
+	$(BOOT_SIGNER) /boot $@ device/nubia/nx609j/bootsignature/verity.pk8 device/nubia/nx609j/bootsignature/verity.x509.pem $@
 	$(hide) $(call assert-max-image-size,$@,$(BOARD_BOOTIMAGE_PARTITION_SIZE),raw)
 	@echo -e ${CL_CYN}"Made boot image: $@"${CL_RST}
 
@@ -38,7 +38,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
 		$(recovery_kernel)
 		$(call build-recoveryimage-target, $@)
 	@echo -e ${CL_CYN}"----- Making recovery image ------"${CL_RST}
-	$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --output $@
-	$(BOOT_SIGNER) /recovery $@ device/nubia/nx563j/bootsignature/verity.pk8 device/nubia/nx563j/bootsignature/verity.x509.pem $@
+	$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --base $(BOARD_KERNEL_BASE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET) --second_offset $(BOARD_SECOND_OFFSET) --output $@
+	$(BOOT_SIGNER) /recovery $@ device/nubia/nx609j/bootsignature/verity.pk8 device/nubia/nx609j/bootsignature/verity.x509.pem $@
 	$(hide) $(call assert-max-image-size,$@,$(BOARD_RECOVERYIMAGE_PARTITION_SIZE),raw)
 	@echo -e ${CL_CYN}"Made recovery image: $@"${CL_RST}
